@@ -1,5 +1,6 @@
 ﻿using BepInEx.Configuration;
-using System;
+
+using ComfyLib;
 
 using UnityEngine;
 
@@ -69,10 +70,53 @@ namespace ColorfulPieces {
                   new AcceptableValueRange<float>(0f, 0.8f)));
 
       ShowChangeRemoveColorPrompt =
-          config.Bind("Hud", "showChangeRemoveColorPrompt", true, "Show the 'change/remove/copy' color text prompt.");
+          config.Bind("Hud", "showChangeRemoveColorPrompt", false, "Show the 'change/remove/copy' color text prompt.");
 
       ColorPromptFontSize =
           config.Bind("Hud", "colorPromptFontSize", 15, "Font size for the 'change/remove/copy' color text prompt.");
+
+      BindUpdateColorsConfig(config);
+      BindPieceStabilityColorsConfig(config);
+    }
+
+    public static ConfigEntry<int> UpdateColorsFrameLimit { get; private set; }
+    public static ConfigEntry<float> UpdateColorsWaitInterval { get; private set; }
+
+    static void BindUpdateColorsConfig(ConfigFile config) {
+      UpdateColorsFrameLimit =
+          config.BindInOrder(
+              "UpdateColors",
+              "updateColorsFrameLimit",
+              100,
+              "Limit for how many PieceColor.UpdateColors to process per update frame.",
+              new AcceptableValueRange<int>(50, 250));
+
+      UpdateColorsWaitInterval =
+          config.BindInOrder(
+              "UpdateColors",
+              "updateColorsWaitInterval",
+              5f,
+              "Interval to wait after each PieceColor.UpdateColors loop. *Restart required!*",
+              new AcceptableValueRange<float>(0.5f, 10f));
+    }
+
+    public static ConfigEntry<Color> PieceStabilityMinColor { get; private set; }
+    public static ConfigEntry<Color> PieceStabilityMaxColor { get; private set; }
+
+    static void BindPieceStabilityColorsConfig(ConfigFile config) {
+      PieceStabilityMinColor =
+          config.BindInOrder(
+              "PieceStabilityColors",
+              "pieceStabilityMinColor",
+              Color.red,
+              "Color for the Piece Stability highlighting gradient to use for minimum stability.");
+
+      PieceStabilityMaxColor =
+          config.BindInOrder(
+              "PieceStabilityColors",
+              "pieceStabilityMaxColor",
+              Color.green,
+              "Color for the Piece Stability highlighting gradient to use for maximum stability.");
     }
 
     static void UpdateColorHexValue() {
