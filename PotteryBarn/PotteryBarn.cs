@@ -21,9 +21,9 @@ namespace PotteryBarn {
   public class PotteryBarn : BaseUnityPlugin {
     public const string PluginGuid = "redseiko.valheim.potterybarn";
     public const string PluginName = "PotteryBarn";
-    public const string PluginVersion = "1.4.0";
+    public const string PluginVersion = "1.4.1";
 
-    public static ManualLogSource _logger;
+    static ManualLogSource _logger;
     Harmony _harmony;
 
     static Piece.PieceCategory _prefabPieceCategory;

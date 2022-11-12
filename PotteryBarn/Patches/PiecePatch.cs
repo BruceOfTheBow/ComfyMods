@@ -24,12 +24,6 @@ namespace PotteryBarn {
       }
       return true;
     }
-
-    //[HarmonyPrefix]
-    //[HarmonyPatch(nameof(Piece.DropResources))]
-    //public static bool GeAllPiecesInRadiusPostfix(Piece __instance) {
-
-    //}
    }
 
   [HarmonyPatch(typeof(DropOnDestroyed))]

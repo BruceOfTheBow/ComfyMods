@@ -80,6 +80,10 @@
 
 ## Changelog
 
+### 1.4.1
+
+  * Added check for creator shop pieces not made by current player to be excluded from piece list during ward interactions.
+
 ### 1.4.0
 
   * Fixed for `v0.211.9` patch.
