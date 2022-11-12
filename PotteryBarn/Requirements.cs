@@ -150,5 +150,9 @@ namespace PotteryBarn {
       {"StatueSeed", "piece_stonecutter" },
       {"stonechest", "piece_stonecutter" }
     };
+
+    public static readonly string[] playerScalablePrefabs = new string[] {
+      "GlowingMushroom"
+    };
   }
 }

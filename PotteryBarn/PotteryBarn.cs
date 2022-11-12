@@ -23,13 +23,14 @@ namespace PotteryBarn {
     public const string PluginName = "PotteryBarn";
     public const string PluginVersion = "1.4.0";
 
-    static ManualLogSource _logger;
+    public static ManualLogSource _logger;
     Harmony _harmony;
 
     static Piece.PieceCategory _prefabPieceCategory;
     static Piece.PieceCategory _cultivatorPrefabPieceCategory;
     static Sprite _standardPrefabIconSprite;
     static Quaternion _prefabIconRenderRotation;
+    static readonly float _scaleAxisModifierInterval = 0.25f;
 
     public static bool _debug = false;
     public static bool IsDropTableDisabled { get; set; } = false;
